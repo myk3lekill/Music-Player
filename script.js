@@ -134,3 +134,16 @@ function updateProgressBar(Event){
 
 //Event Listener: time update
 music.addEventListener('timeupdate', updateProgressBar);
+
+//Set progress bar
+function setProgressBar(Event) {
+    const width = this.clientWidth;
+    const clickX = Event.offsetX;
+    const { duration } = music;
+    // console.log((clickX/width) * duration); 
+    //set current time of the audio
+    music.currentTime = ((clickX/width) * duration) //apply the percentage to the duration
+}
+
+//Event listener: set progress bar
+progressContainer.addEventListener('click', setProgressBar)
