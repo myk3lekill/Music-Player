@@ -109,12 +109,12 @@ function updateProgressBar(Event){
         progress.style.width = `${progressPercent}%` //manipulate the width param of the CSS style of the progress bar
         //Calculate display for the duration
         const durationMinutes = Math.floor(duration / 60);
-        console.log('minutes', durationMinutes);
+        //console.log('minutes', durationMinutes);
         let durationSeconds = Math.floor(duration % 60);
         if (durationSeconds < 10 ) {
             durationSeconds = `0${durationSeconds}`;
         }
-        console.log('seconds', durationSeconds)
+        //console.log('seconds', durationSeconds)
         //Delay switching duration element to avoid not a number
         if (durationSeconds) {
             durationEl.textContent = `${durationMinutes}:${durationSeconds}`; //set the text content of duration element
@@ -122,12 +122,12 @@ function updateProgressBar(Event){
 
         //Calculate display for the current time
         const currentMinutes = Math.floor(currentTime / 60);
-        console.log('minutes', currentMinutes);
+        //console.log('minutes', currentMinutes);
         let currentSeconds = Math.floor(currentTime % 60);
         if (currentSeconds < 10 ) {
             currentSeconds = `0${currentSeconds}`;
         }
-        console.log('seconds', currentSeconds)
+        //console.log('seconds', currentSeconds)
         currentTimeEl.textContent = `${currentMinutes}:${currentSeconds}`; //set the text content of current time element
     }
 }
@@ -147,3 +147,6 @@ function setProgressBar(Event) {
 
 //Event listener: set progress bar
 progressContainer.addEventListener('click', setProgressBar)
+
+//Event listener: when song ends go to the next one automatically 
+music.addEventListener('ended', nextSong)
