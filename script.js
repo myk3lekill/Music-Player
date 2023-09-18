@@ -4,11 +4,15 @@ const title = document.getElementById('title');
 const artist = document.getElementById('artist');
 
 const music = document.querySelector('audio');
+
+const progressContainer = document.getElementById('progress-container');
+const progress = document.getElementById('progress');
+
 const prevBtn = document.getElementById('prev');
 const playBtn = document.getElementById('play');
 const nextBtn = document.getElementById('next');
 
-//Music
+//Music Array os Objects
 const songs = [
     {
         name: 'jacinto-1',
@@ -26,8 +30,6 @@ const songs = [
         artist: 'Jacinto Design',
     },
 ];
-
-
 
 //Check if Audio is playing
 let isPlaying = false;
@@ -47,9 +49,6 @@ function pauseSong() {
     playBtn.setAttribute('title', 'Play');
     music.pause();
 }
-
-//
-
 
 //Event Listener: Play or Pause
 playBtn.addEventListener('click', () => (isPlaying ? pauseSong() : playSong()));
@@ -95,3 +94,18 @@ loadSong(songs[songIndex]);
 //Event Listener: prev next song
 prevBtn.addEventListener('click', prevSong);
 nextBtn.addEventListener('click', nextSong);
+
+//updateProgressBar and time function
+function  updateProgressBar(Event){
+    if (isPlaying) {
+        //Grab events duration and current time of song
+        const { duration, currentTime } = Event.srcElement;
+        console.log(duration, currentTime);
+        //Update progress bar width
+        const progressPercent = (currentTime/duration) * 100;
+        progress.style.width = `${progressPercent}%` //manipulate the width param of the CSS style of the progress bar
+    }
+}
+
+//Event Listener: time update
+music.addEventListener('timeupdate', updateProgressBar);
