@@ -95,6 +95,10 @@ h2 {
     cursor: pointer;
     user-select: none;
   }
+
+  .fa-play {
+    width: 25px;
+  }
   
   .fas:hover {
     filter: brightness(80%);
